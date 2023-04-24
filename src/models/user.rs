@@ -5,6 +5,8 @@ use tokio::task;
 use validator::Validate;
 use wither::bson::{doc, oid::ObjectId};
 use wither::Model as WitherModel;
+use utoipa::ToSchema;
+
 
 use crate::errors::Error;
 use crate::utils::date;
@@ -15,7 +17,7 @@ impl ModelExt for User {
   type T = User;
 }
 
-#[derive(Debug, Clone, Serialize, Deserialize, WitherModel, Validate)]
+#[derive(Debug, Clone, Serialize, Deserialize, WitherModel, Validate,ToSchema)]
 #[model(index(keys = r#"doc!{ "email": 1 }"#, options = r#"doc!{ "unique": true }"#))]
 pub struct User {
   #[serde(rename = "_id", skip_serializing_if = "Option::is_none")]
