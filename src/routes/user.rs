@@ -1,5 +1,8 @@
+use axum::{
+    Json,
+    Router, routing::{get, post},
+};
 use axum::http::StatusCode;
-use axum::{routing::{get, post}, Json, Router};
 use bson::doc;
 use serde::{Deserialize, Serialize};
 use tracing::debug;

@@ -1,9 +1,9 @@
-use axum::http::StatusCode;
 use axum::{
   extract::{Path, Query},
-  routing::{delete, get, post, put},
-  Json, Router,
+  Json,
+  Router, routing::{delete, get, post, put},
 };
+use axum::http::StatusCode;
 use bson::doc;
 use serde::{Deserialize, Serialize};
 use tracing::debug;
@@ -20,11 +20,11 @@ use crate::utils::token::TokenUser;
 
 pub fn create_route() -> Router {
   Router::new()
-    .route("/cats", post(create_cat))
-    .route("/cats", get(query_cats))
-    .route("/cats/:id", get(get_cat_by_id))
-    .route("/cats/:id", delete(remove_cat_by_id))
-    .route("/cats/:id", put(update_cat_by_id))
+      .route("/cats", post(create_cat))
+      .route("/cats", get(query_cats))
+      .route("/cats/:id", get(get_cat_by_id))
+      .route("/cats/:id", delete(remove_cat_by_id))
+      .route("/cats/:id", put(update_cat_by_id))
 }
 
 async fn create_cat(
@@ -36,9 +36,9 @@ async fn create_cat(
   let res = PublicCat::from(cat);
 
   let res = CustomResponseBuilder::new()
-    .body(res)
-    .status_code(StatusCode::CREATED)
-    .build();
+      .body(res)
+      .status_code(StatusCode::CREATED)
+      .build();
 
   Ok(res)
 }
@@ -50,18 +50,18 @@ async fn query_cats(
   let pagination = Pagination::build_from_request_query(query);
 
   let options = FindOptions::builder()
-    .sort(doc! { "created_at": -1_i32 })
-    .skip(pagination.offset)
-    .limit(pagination.limit as i64)
-    .build();
+      .sort(doc! { "created_at": -1_i32 })
+      .skip(pagination.offset)
+      .limit(pagination.limit as i64)
+      .build();
 
   let (cats, count) = Cat::find_and_count(doc! { "user": &user.id }, options).await?;
   let cats = cats.into_iter().map(Into::into).collect::<Vec<PublicCat>>();
 
   let res = CustomResponseBuilder::new()
-    .body(cats)
-    .pagination(pagination.count(count).build())
-    .build();
+      .body(cats)
+      .pagination(pagination.count(count).build())
+      .build();
 
   debug!("Returning cats");
   Ok(res)
@@ -70,8 +70,8 @@ async fn query_cats(
 async fn get_cat_by_id(user: TokenUser, Path(id): Path<String>) -> Result<Json<PublicCat>, Error> {
   let cat_id = to_object_id(id)?;
   let cat = Cat::find_one(doc! { "_id": cat_id, "user": &user.id }, None)
-    .await?
-    .map(PublicCat::from);
+      .await?
+      .map(PublicCat::from);
 
   let cat = match cat {
     Some(cat) => cat,
@@ -98,8 +98,8 @@ async fn remove_cat_by_id(
   }
 
   let res = CustomResponseBuilder::new()
-    .status_code(StatusCode::NO_CONTENT)
-    .build();
+      .status_code(StatusCode::NO_CONTENT)
+      .build();
 
   Ok(res)
 }
@@ -116,8 +116,8 @@ async fn update_cat_by_id(
     doc! { "_id": &cat_id, "user": &user.id },
     doc! { "$set": update },
   )
-  .await?
-  .map(PublicCat::from);
+      .await?
+      .map(PublicCat::from);
 
   let cat = match cat {
     Some(cat) => cat,

@@ -1,13 +1,16 @@
-use std::net::SocketAddr;
 use tracing::info;
+
+use errors::Error;
+use settings::SETTINGS;
+use std::net::SocketAddr;
 
 mod app;
 mod database;
 mod errors;
+mod extension;
 mod logger;
 mod models;
 mod routes;
-mod extension;
 mod settings;
 mod utils;
 
@@ -19,9 +22,6 @@ mod utils;
 #[cfg(test)]
 mod tests;
 
-use errors::Error;
-use settings::SETTINGS;
-
 #[tokio::main]
 async fn main() {
   let app = app::create_app().await;
@@ -31,7 +31,7 @@ async fn main() {
 
   info!("Server listening on {}", &address);
   axum::Server::bind(&address)
-    .serve(app.into_make_service())
-    .await
-    .expect("Failed to start server");
+      .serve(app.into_make_service())
+      .await
+      .expect("Failed to start server");
 }

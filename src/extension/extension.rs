@@ -1,5 +1,6 @@
-use std::collections::HashMap;
 use chrono::{DateTime, Local};
+
+use std::collections::HashMap;
 
 #[warn(dead_code)]
 struct Extension {
