@@ -1,8 +1,8 @@
+use std::{env, fmt};
+
 use config::{Config, ConfigError, Environment, File};
 use lazy_static::lazy_static;
 use serde::Deserialize;
-
-use std::{env, fmt};
 
 lazy_static! {
     pub static ref SETTINGS: Settings = Settings::new().expect("Failed to setup settings");
@@ -22,6 +22,7 @@ pub struct Logger {
 pub struct Database {
     pub uri: String,
     pub name: String,
+    pub platform: String,
 }
 
 #[derive(Debug, Clone, Deserialize)]
@@ -40,7 +41,7 @@ pub struct Settings {
 
 impl Settings {
     pub fn new() -> Result<Self, ConfigError> {
-        let run_mode = env::var("RUN_MODE").unwrap_or_else(|_| "development".into());
+        let run_mode = env::var("RUN_MODE").unwrap_or_else(|_| "dev".into());
 
         let mut builder = Config::builder()
             .add_source(File::with_name("config/default"))

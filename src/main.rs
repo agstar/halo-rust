@@ -1,8 +1,9 @@
+use std::net::SocketAddr;
+
 use tracing::info;
 
 use errors::Error;
 use settings::SETTINGS;
-use std::net::SocketAddr;
 
 mod app;
 mod database;
@@ -21,6 +22,7 @@ mod utils;
 // modules from the src folder, modules need to be exported as a lib.
 #[cfg(test)]
 mod tests;
+mod config;
 
 #[tokio::main]
 async fn main() {
