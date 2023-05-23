@@ -1838,12 +1838,13 @@ dependencies = [
 
 [[package]]
 name = "rbatis"
-version = "4.3.0"
+version = "4.3.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "cf1a9ffb0376fd15b4a017d23d477f543ffdc6539d20236728932d55197e8fbd"
+checksum = "7f83909cea230175e236b0667304008275eb6b1bdef2d348194912835db55634"
 dependencies = [
  "crossbeam",
  "dark-std",
+ "fastdate",
  "futures",
  "futures-core",
  "hex",
