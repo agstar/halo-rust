@@ -1850,9 +1850,9 @@ dependencies = [
 
 [[package]]
 name = "rbatis"
-version = "4.3.4"
+version = "4.3.6"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "f4b2eb3541bb0a7e4bf33890bb2fa2b3c10181f7232aefb7e8b83098efaa5aef"
+checksum = "5f1e531e173df9fee5e4d1d68d9ec8bd7119d90ca20da4fa4fb7a58aaed04388"
 dependencies = [
  "crossbeam",
  "dark-std",
@@ -1861,7 +1861,6 @@ dependencies = [
  "futures-core",
  "hex",
  "log",
- "once_cell",
  "rand",
  "rbatis-codegen",
  "rbatis-macro-driver",
