@@ -36,7 +36,7 @@ rbdc-sqlite = { version = "4.3" }
 utoipa = { version = "3", features = ["axum_extras","chrono"] }
 utoipa-swagger-ui = { version = "3", features = ["axum"] }
 jsonwebtoken = "8.3.0"
-once_cell = "1.17.1"
+once_cell = "1.18.0"
 bcrypt = "0.14.0"
 validator = { version = "0.16.0", features = ["derive"] }
 lazy_static = "1.4.0"
