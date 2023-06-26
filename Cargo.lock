@@ -1934,9 +1934,9 @@ dependencies = [
 
 [[package]]
 name = "rbdc-sqlite"
-version = "4.3.5"
+version = "4.3.6"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "291719ad3f249b3ee1ea8c0635358ab2b7e5a3506a881566f3aa5ebd14da6d7e"
+checksum = "bf4d6b9ba489162dca5c93f32c838ba803309bf5910e4908f73ccf0781d24507"
 dependencies = [
  "atoi",
  "bytes",
