@@ -1,0 +1,13 @@
+environment: dev
+server:
+  port: 8080
+
+database:
+  uri: mongodb://flow:flow@10.1.4.53:27017,10.1.4.245/flow
+  name: flow
+
+auth:
+  secret: secret
+
+logger:
+  level: debug

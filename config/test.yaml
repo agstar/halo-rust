@@ -1,0 +1,8 @@
+environment: test
+server:
+  port: 8088
+database:
+  uri: 'mongodb://flow:flow@10.1.4.53:27017'
+  name: flow
+logger:
+  level: error

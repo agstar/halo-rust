@@ -6,8 +6,8 @@
   },
 
   "database": {
-    "uri": "mongodb://localhost:27017",
-    "name": "rustapi-test"
+    "uri": "mongodb://flow:flow@10.1.4.53:27017",
+    "name": "flow"
   },
 
   "logger": {
